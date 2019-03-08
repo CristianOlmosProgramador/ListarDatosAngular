@@ -1,0 +1,83 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title class="page-header">Formulario Listar Datos</title>
+
+   
+    <link rel="stylesheet" href="boostrap/css/bootstrap.min.css">  
+    <script src="./jquery/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+  </head>
+  <body>
+    <div class="container">
+
+      <h1 class="text-primary" align="center">Formulario Listar Datos</h1>
+
+      <div class="row" align="center">
+        
+
+        <div class="col-md-12">          
+
+          <div ng-app="listarRegistros" ng-controller="postresController">
+
+          <table class="table table-striped">
+            <thead>
+              <tr class="page-header">
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+              </tr>          
+            </thead>
+            <tbody>
+              <tr ng-repeat="x in names">
+                <td>{{ x.nombre }}</td>
+                <td> {{ x.precio }}</td>
+                <td>{{ x.stock }} unidades</td>
+              </tr>
+            </tbody>
+          </table> 
+           
+          </div>
+
+           
+          <script type="text/javascript">
+              var app = angular.module('listarRegistros', []);
+              app.controller('postresController', function($scope, $http) {
+                  $http.get("archivo.php")
+                  .then(function (response) {$scope.names = response.data.records;});
+              });       
+          </script>
+
+          
+        </div>
+
+        
+      </div>
+      
+    </div>
+
+    <br>
+
+  <footer>
+
+      <div class="container text-center">
+
+        <p class="text-muted credit">
+
+          Trabajo Realizado por Cristian Olmos.
+          Boostrap, AngularJS, <JavaScript class=""></JavaScript>
+
+        </p>
+
+      </div>        
+
+    </footer>    
+
+  </body>
+</html>
